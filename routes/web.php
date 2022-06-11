@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     $response = Http::get('https://dev.shepherd.appoly.io/fruit.json');
+     $items    = $response->object();
+      
+      //var_dump($items);
+
+    return view('welcome', [
+        'items' => $items
+    ]);
+    
 });
